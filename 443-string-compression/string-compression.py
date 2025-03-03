@@ -10,11 +10,12 @@ class Solution:
             else:
                 if prev:
                     x = prev + ("" if count == 1 else str(count))
-                    chars[l: l + len(x)] = x
+                    chars[l: l+len(x)] = x
                     l += len(x)
                    
                 prev = ch
                 count = 1
+    
         x = prev + ("" if count == 1 else str(count))
         chars[l:l + len(x)] = x
         l += len(x)
