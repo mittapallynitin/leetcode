@@ -14,7 +14,3 @@ class Solution:
                 nums1[p] = nums2[j]
                 j -= 1
             p -= 1
-        while j >= 0:
-            nums1[p] = nums2[j]
-            p -= 1
-            j -= 1
