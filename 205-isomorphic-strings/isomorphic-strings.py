@@ -1,16 +1,15 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        mapTS = dict()
+        if len(s) != len(t): return False
+        if len(set(s)) != len(set(t)): return False
+
         mapST = dict()
 
         for i in range(len(s)):
-            c1, c2 = s[i], t[i]
-
-            if (c1 in mapST and mapST[c1] != c2) or (c2 in mapTS and mapTS[c2] != c1):
+            if s[i] not in mapST:
+                mapST[s[i]] = t[i]
+            elif mapST[s[i]] != t[i]:
                 return False
-
-            mapST[c1] = c2
-            mapTS[c2] = c1
         return True
 
 
