@@ -1,5 +1,6 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        if len(ransomNote) > len(magazine): return False
         ch_count = {}
         for ch in magazine:
             ch_count[ch] = ch_count.get(ch, 0) + 1
