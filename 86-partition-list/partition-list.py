@@ -15,11 +15,9 @@ class Solution:
             if node.val < x:
                 l.next = node
                 l = node 
-                l.next = None
             else: 
                 r.next = node
                 r = node
-                r.next = None 
-        
+        r.next = None
         l.next = second.next 
         return first.next
