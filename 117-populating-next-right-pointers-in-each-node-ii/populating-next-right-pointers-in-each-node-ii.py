@@ -20,12 +20,10 @@ class Solution:
             prev = None
             for _ in range(len(q)):
                 node = q.popleft()
-                print(node.val)
                 if prev:
                     prev.next = node
                     print(f"connecting {prev.val} to {node.val}")
                 prev = node
                 if node.left: q.append(node.left)
                 if node.right: q.append(node.right)
-            node.next = None
         return root
