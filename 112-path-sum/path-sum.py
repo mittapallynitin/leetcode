@@ -10,8 +10,9 @@ class Solution:
         def dfs(node, target) -> bool:
             if not node:
                 return False
-            if not node.left and not node.right and node.val == target:
-                return True
+            
+            if not node.left and not node.right:
+                return node.val == target
 
             return (
                 dfs(node.left, target - node.val) or 
