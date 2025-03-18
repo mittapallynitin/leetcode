@@ -15,7 +15,7 @@ class Solution:
                 node = q.pop(0)
                 if node:
                     level.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if level: output.append(level)
+                    if node.left: q.append(node.left)
+                    if node.right: q.append(node.right)
+            output.append(level)
         return output
