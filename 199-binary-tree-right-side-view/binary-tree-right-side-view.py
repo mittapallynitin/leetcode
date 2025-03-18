@@ -14,13 +14,11 @@ class Solution:
         q.append(root)
 
         while q:
-            level_nodes = []
             for _ in range(len(q)):
                 node = q.popleft()
-                level_nodes.append(node)
                 if node.left: q.append(node.left)
                 if node.right: q.append(node.right)
-            res.append(level_nodes)
+            res.append(node.val)
         
-        return [n[-1].val for n in res]
+        return res
         
