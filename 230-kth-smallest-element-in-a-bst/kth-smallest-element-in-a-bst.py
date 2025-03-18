@@ -9,7 +9,7 @@ class Solution:
         values = []
 
         def dfs(node):
-            if not node:
+            if not node or len(values) == k:
                 return
             
             dfs(node.left)
