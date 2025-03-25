@@ -1,30 +1,26 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         memo = {}
-        def interleave(s1, s2, s3) -> bool:
-            if len(s1) + len(s2) != len(s3):
-                memo[(s1, s2, s3)] = False
-                return False
+        def interleave(i, j, k) -> bool:
+            if k == len(s3):
+                return i == len(s1) and j == len(s2)
             
-            if len(s1) == len(s2) == len(s3) == 0:
-                memo[(s1, s2, s3)] = True
-                return True
+            if (i,j) in memo:
+                return memo[(i,j)]
             
-            if (s1, s2, s3) in memo:
-                return memo[(s1, s2, s3)]
 
-            if s1 and s1[0] == s3[0]:
-                if interleave(s1[1:], s2, s3[1:]):
-                    memo[(s1, s2, s3)] = True
+            if i < len(s1) and s1[i] == s3[k]:
+                if interleave(i+1, j, k+1):
+                    memo[(i, j)] = True
                     return True
             
-            if s2 and s2[0] == s3[0]:
-                if interleave(s1, s2[1:], s3[1:]):
-                    memo[(s1, s2, s3)] = True
+            if j < len(s2) and s2[j] == s3[k]:
+                if interleave(i, j+1, k+1):
+                    memo[(i,j)] = True
                     return True
             
-            memo[(s1, s2, s3)] = False
+            memo[(i, j)] = False
             return False
         
-        return interleave(s1, s2, s3)
+        return interleave(0, 0, 0)
         
