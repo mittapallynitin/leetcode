@@ -9,5 +9,8 @@ class Solution:
         rob[1] = nums[0]
 
         for i in range(2, n+1):
-            rob[i] = max(nums[i-1] + rob[i-2], rob[i-1])
-        return rob[-1]
+            rob[i] = max(
+                nums[i-1] + rob[i-2], # rob current house + robbed amount to previous house
+                rob[i-1] # skip current house
+            )
+        return rob[n]
