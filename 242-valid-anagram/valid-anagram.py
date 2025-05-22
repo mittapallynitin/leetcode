@@ -1,10 +1,19 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t): return False
+        if len(s) != len(t):
+            return False
+        
+        alpha = [0]*26
+        for ch1, ch2 in zip(s, t):
+            ch1 = ord(ch1) - ord('a')
+            ch2 = ord(ch2) - ord('a')
+            alpha[ch1] += 1
+            alpha[ch2] -= 1
 
-        s_cnt, t_cnt = dict(), dict()
-        for c1, c2 in zip(s, t): 
-            s_cnt[c1] = s_cnt.get(c1, 0) + 1
-            t_cnt[c2] = t_cnt.get(c2, 0) + 1
-        return s_cnt == t_cnt
+        for i in range(26):
+            if alpha[i] != 0:
+                return False
+        return True
+
+
         
