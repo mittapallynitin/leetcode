@@ -14,8 +14,4 @@ class Solution:
                 )
             else:
                 score.append(int(op))
-        
-        res = 0 
-        for s in score:
-            res += s
-        return res
+        return sum(score)
