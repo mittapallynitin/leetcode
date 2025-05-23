@@ -2,14 +2,12 @@ class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         result = []
         carry = 1
-
-        for i in digits[::-1]:
+        digits.reverse()
+        for i in digits:
             res = i + carry
             carry = res // 10
-            res = res % 10 
-            
             result.append(
-                res
+                res % 10 
             )
         if carry:
             result.append(carry)
