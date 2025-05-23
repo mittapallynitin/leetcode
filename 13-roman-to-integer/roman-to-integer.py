@@ -15,13 +15,14 @@ class Solution:
             "CM": 900,
             "M": 1000
         }
-        i = 0
-        total = 0
+        i = 0 
+        result = 0
         while i < len(s):
-            if s[i:i+2] in r_to_i:
-                total += r_to_i[s[i:i+2]]
+            if s[i: i+2] in r_to_i:
+                result += r_to_i[s[i:i+2]]
                 i += 2
             else:
-                total += r_to_i[s[i: i+1]]
+                result += r_to_i[s[i:i+1]]
                 i += 1
-        return total
+        
+        return result 
