@@ -5,15 +5,8 @@ class Solution:
         """
         ROWS, COLS = len(matrix), len(matrix[0])
 
-        first_row_zero = any(
-            [True if matrix[0][i] == 0 else False for i in range(COLS)]
-        )
-        first_col_zero = any(
-            [
-                True if matrix[i][0] == 0 else False
-                for i in range(ROWS) 
-            ]
-        )
+        first_row_zero = any(matrix[0][i] == 0 for i in range(COLS))
+        first_col_zero = any(matrix[i][0] == 0 for i in range(ROWS))
         
         for r in range(1, ROWS):
             for c in range(COLS):
@@ -22,13 +15,8 @@ class Solution:
                     matrix[0][c] = 0 
         
         for c in range(1, COLS):
-            if matrix[0][c] == 0:
-                for r in range(ROWS):
-                    matrix[r][c] = 0
-        
-        for r in range(1, ROWS):
-            if matrix[r][0] == 0:
-                for c in range(COLS):
+            for r in range(1, ROWS):
+                if matrix[r][0] == 0 or matrix[0][c] == 0:
                     matrix[r][c] = 0
         
         if first_row_zero:
