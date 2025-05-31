@@ -3,7 +3,7 @@ class Solution:
         if len(s) == 0:
             return True
         l = 0 
-        for ch in t + "1":
+        for ch in t:
             if ch == s[l]:
                 l += 1
             
