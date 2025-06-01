@@ -14,13 +14,10 @@ class Solution:
             level = []
             for _ in range(len(q)):
                 node = q.pop(0)
-                if node:
-                    level.append(node.val)
-                    if node.left: q.append(node.left)
-                    if node.right: q.append(node.right)
-            if i % 2 == 0:
-                output.append(level)
-            else:
-                output.append(level[::-1])
-            i += 1
+                level.append(node.val)
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
+            output.append(level)
+        for i, arr in enumerate(output):
+            if i % 2: arr.reverse()
         return output
