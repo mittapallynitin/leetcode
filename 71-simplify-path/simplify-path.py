@@ -2,8 +2,7 @@ class Solution:
     def simplifyPath(self, path: str) -> str:
         stack = []
         path = path.split("/")
-        for df in path:
-            cleaned = df.strip()
+        for cleaned in path:
             if cleaned in [".", "/", ""]:
                 continue
             elif cleaned == "..":
