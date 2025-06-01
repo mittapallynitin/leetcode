@@ -1,39 +1,36 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        from collections import defaultdict
+        from collections import defaultdict, Counter
+
+        if not s or not t:
+            return ""
 
         # S Details
         seq_len = len(s)
         
         # T Details
-        char_hash = defaultdict(int)
-        required_len = len(t)
-        for ch in t:
-            char_hash[ch] += 1
+        char_hash = Counter(t)
+        required = len(char_hash)
+        
 
         # Build details
+        formed = 0
         build_hash = defaultdict(int)
-        build_len = 0
 
         # Result
         window = float("inf")
         answer = ""
         l = 0 
 
-        # Validate window
-        def is_valid(build_hash):
-            for ch in char_hash:
-                if build_hash.get(ch, 0) < char_hash[ch]:
-                    return False
-            return True
-
 
         for r in range(seq_len):
-            if s[r] in char_hash:
-                build_hash[s[r]] += 1
-                build_len += 1
+            ch = s[r]
+            if ch in char_hash:
+                build_hash[ch] += 1
+                if char_hash[ch] == build_hash[ch]:
+                    formed += 1
 
-            while build_len >= required_len and is_valid(build_hash):
+            while formed == required:
                 window_len = r - l + 1
                 if window_len < window:
                     window = window_len
@@ -42,7 +39,9 @@ class Solution:
                 left_ch = s[l]
                 if left_ch in build_hash:
                     build_hash[left_ch] -= 1
-                    build_len -= 1
+                    if build_hash[left_ch] < char_hash[left_ch]:
+                        formed -= 1
+                    
                 l += 1
         
         return answer
