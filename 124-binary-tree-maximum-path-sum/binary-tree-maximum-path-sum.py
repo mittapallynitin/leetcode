@@ -23,10 +23,10 @@ class Solution:
                 node.val, 
                 node.val + left_sum, 
                 node.val + right_sum, 
-                node.val + left_sum + right_sum
+                node.val + left_sum + right_sum,
             )
 
-            # If this is a passing node
+            # If this is a passing node i.e left_sum or right_sum
             return max(
                 node.val, 
                 node.val + left_sum,
