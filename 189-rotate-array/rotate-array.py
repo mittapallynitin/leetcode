@@ -17,11 +17,12 @@ class Solution:
                 start += 1
                 stop -= 1
         
-        k = k % len(nums)
-        reverse_inplace(nums, 0, len(nums))
+        n = len(nums)
+        k = k % n
+        reverse_inplace(nums, 0, n)
         reverse_inplace(nums, 0, k)
-        reverse_inplace(nums, k, len(nums))
-        print(nums)
+        reverse_inplace(nums, k, n)
+
 
 
             
