@@ -17,8 +17,6 @@ class Solution:
                 start += 1
                 stop -= 1
         
-        if len(nums) == 1:
-            return
         k = k % len(nums)
         reverse_inplace(nums, 0, len(nums))
         reverse_inplace(nums, 0, k)
