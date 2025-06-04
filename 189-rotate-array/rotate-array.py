@@ -11,11 +11,11 @@ class Solution:
 
         # Way 2: Reverse the complete list, revese the first k and rest of elements. 
         def reverse_inplace(nums, start, stop):
-            n_elemts = (stop - start)
-            n = n_elemts // 2 + n_elemts % 2
-
-            for i in range(n):
-                nums[start + i], nums[stop-i-1] = nums[stop-i-1], nums[start + i]
+            stop = stop - 1
+            while start < stop:
+                nums[start], nums[stop] = nums[stop], nums[start]
+                start += 1
+                stop -= 1
         
         if len(nums) == 1:
             return
@@ -24,6 +24,8 @@ class Solution:
         reverse_inplace(nums, 0, k)
         reverse_inplace(nums, k, len(nums))
         print(nums)
+
+
             
 
 
