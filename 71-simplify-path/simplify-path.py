@@ -3,7 +3,7 @@ class Solution:
         path = path.split("/")
         stack = []
         for p in path:
-            if "." == p or not p:
+            if p in [".", ""]:
                 continue
             elif ".." == p:
                 if stack: stack.pop()
