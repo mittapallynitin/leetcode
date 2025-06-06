@@ -1,24 +1,26 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        count = 0
-        ans = []
-        previous = []
+        to_remove = set()
+        stack = []
         for i, ch in enumerate(s):
             if ch == "(":
-                count += 1
-                previous.append(i)
+                stack.append(i)
             elif ch == ")":
-                count -= 1
-            
-            if count < 0:
-                count = 0
-                ans.append("-")
+                if stack:
+                    stack.pop()
+                else:
+                    to_remove.add(i)
             else:
+                continue
+
+        to_remove = to_remove.union(set(stack))
+
+        ans = []
+        for i, ch in enumerate(s):
+            if i not in to_remove:
                 ans.append(ch)
-            
-        if count > 0:
-            for i in previous[-count:]:
-                ans[i] = "-"
+        return "".join(ans)
+
+                
         
-        return "".join(ch for ch in ans if ch != "-")
         
