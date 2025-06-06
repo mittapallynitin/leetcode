@@ -1,30 +1,19 @@
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        i = 0 
-        n = len(abbr)
-        sub = []
-        while i < n:
-            if abbr[i].isdigit():
-                if abbr[i] == "0":
+        p1 = p2 = 0 
+        while p1 < len(word) and p2 < len(abbr):
+            if abbr[p2].isdigit():
+                if abbr[p2] == "0":
                     return False
-                num = ""
-                while i < n and abbr[i].isdigit():
-                    num += abbr[i]
-                    i += 1
-                if int(num) > len(word):
-                    return False
-                sub.append("-"*int(num))
+                shift = 0
+                while p2 < len(abbr) and abbr[p2].isdigit():
+                    shift = shift*10 + int(abbr[p2])
+                    p2 += 1
+                p1 += shift
             else:
-                sub.append(abbr[i])
-                i += 1
-        sub = "".join(sub)
-        print(sub)
-        print(word)
-        if len(sub) == len(word):
-            for c1, c2 in zip(sub, word):
-                if c1 != "-" and c1 != c2:
+                if word[p1] != abbr[p2]:
                     return False
-        else:
-            return False
-        return True
+                p1 += 1
+                p2 += 1
+        return p1 == len(word) and p2 == len(abbr)
         
