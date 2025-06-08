@@ -1,10 +1,10 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        s = s.replace(" ", "")
         stack = []
         i = 0
         op = "+"
         num = 0
+        s = s.replace(" ", "")
         while i < len(s):
             char = s[i]
             if char.isdigit():
