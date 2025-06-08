@@ -4,36 +4,26 @@ class Solution:
         s = s.replace(" ", "")
         stack = deque()
         i = 0
-        def get_number(i):
-            start = i
-            while i < len(s) and s[i].isdigit():
-                i += 1
-            return int(s[start: i]), i
-
+        op = "+"
+        num = 0
         while i < len(s):
-            if s[i] in "+-":
-                stack.append(s[i])
-                i += 1
-            elif s[i] in "*/":
-                op = s[i]
-                op1 = stack.pop()
-                op2, i = get_number(i+1) 
-                if op == "/":
-                    stack.append(op1//op2)
-                else:
-                    stack.append(op1*op2)
-            else:
-                op, i = get_number(i)
-                stack.append(op)
-        
-        curr = 0 
-        sign = 1
-        for op in stack:
-            if op == "-":
-                sign = -1
-            elif isinstance(op, int):
-                curr += sign * op
-                sign = 1
-        return curr
-                
+            char = s[i]
+            if char.isdigit():
+                num = num*10 + int(char)
+            if char in "+-*/" or i == len(s) - 1:
+                if op == "+":
+                    stack.append(num)
+                elif op == "-":
+                    stack.append(-num)
+                elif op == "*":
+                    top = stack.pop()
+                    stack.append(top*num)
+                elif op == "/":
+                    top = stack.pop()
+                    val = int(top / num)
+                    stack.append(val)
+                op = char
+                num = 0
+            i += 1
+        return sum(stack)       
         
