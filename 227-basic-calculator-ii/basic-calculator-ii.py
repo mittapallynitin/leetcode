@@ -5,11 +5,10 @@ class Solution:
         stack = deque()
         i = 0
         def get_number(i):
-            result = ""
+            start = i
             while i < len(s) and s[i].isdigit():
-                result += s[i]
                 i += 1
-            return int(result), i
+            return int(s[start: i]), i
 
         while i < len(s):
             if s[i] in "+-":
