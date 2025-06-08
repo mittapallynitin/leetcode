@@ -11,10 +11,10 @@ class Solution:
 
     def pickIndex(self) -> int:
         from random import random
+        import bisect
         x = random()
-        for i, prob in enumerate(self.probs):
-            if x < prob:
-                return i
+        # Binary Search
+        return bisect.bisect_left(self.probs, x)
 
         
 # Your Solution object will be instantiated and called as such:
