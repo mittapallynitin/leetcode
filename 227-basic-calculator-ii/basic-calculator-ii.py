@@ -1,8 +1,7 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        from collections import deque
         s = s.replace(" ", "")
-        stack = deque()
+        stack = []
         i = 0
         op = "+"
         num = 0
@@ -16,12 +15,9 @@ class Solution:
                 elif op == "-":
                     stack.append(-num)
                 elif op == "*":
-                    top = stack.pop()
-                    stack.append(top*num)
+                    stack[-1] *= num
                 elif op == "/":
-                    top = stack.pop()
-                    val = int(top / num)
-                    stack.append(val)
+                    stack[-1] = int(stack[-1] / num)
                 op = char
                 num = 0
             i += 1
