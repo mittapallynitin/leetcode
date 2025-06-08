@@ -7,7 +7,7 @@ class Solution:
         for i in range(len(s)):
             char = s[i]
             if char.isdigit():
-                num = num*10 + int(char)
+                num = num*10 + (ord(char) - ord('0'))
             if char in "+-*/" or i == len(s) - 1:
                 if op == "+":
                     stack.append(num)
