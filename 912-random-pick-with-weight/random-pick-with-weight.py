@@ -13,8 +13,14 @@ class Solution:
         from random import random
         import bisect
         x = random()
-        # Binary Search
-        return bisect.bisect_left(self.probs, x)
+        left, right = 0, len(self.probs) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if x < self.probs[mid]:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
         
 # Your Solution object will be instantiated and called as such:
