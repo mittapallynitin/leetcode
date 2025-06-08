@@ -23,7 +23,7 @@ class Solution:
             for dx, dy in dirs:
                 nx, ny = x+dx, y+dy
 
-                if 0 <= nx < N and 0 <= ny < N and grid[nx][ny] == 0 and (nx, ny) not in visited:
+                if min(nx, ny) >= 0 and max(nx, ny) < N and grid[nx][ny] == 0 and (nx, ny) not in visited:
                     q.append((nx, ny, dist+1))
                     visited.add((nx, ny))
         
