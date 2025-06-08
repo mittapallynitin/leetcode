@@ -8,16 +8,18 @@ class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         nums = []
 
-        def dfs(node, path):
+        def dfs(node, value):
             if not node:
                 return
             
             if not node.left and not node.right:
-                nums.append(path + str(node.val))
+                nums.append(value * 10 + node.val )
             
-            dfs(node.left, path + str(node.val))
-            dfs(node.right, path + str(node.val))
-        dfs(root, "")
-        return sum(map(int, nums))
+            value *= 10
+            dfs(node.left, value + int(node.val))
+            dfs(node.right, value + int(node.val))
+    
+        dfs(root, 0)
+        return sum(nums)
 
         
