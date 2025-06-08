@@ -4,8 +4,7 @@ class Solution:
         i = 0
         op = "+"
         num = 0
-        s = s.replace(" ", "")
-        while i < len(s):
+        for i in range(len(s)):
             char = s[i]
             if char.isdigit():
                 num = num*10 + int(char)
@@ -20,6 +19,7 @@ class Solution:
                     stack[-1] = int(stack[-1] / num)
                 op = char
                 num = 0
-            i += 1
+            elif char == ' ':
+                continue
         return sum(stack)       
         
