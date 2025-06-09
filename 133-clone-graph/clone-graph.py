@@ -12,19 +12,15 @@ class Solution:
         from collections import deque
         if not node:
             return node
-        root = node
+
         q = deque([node])
-        mapper = {}
+        mapper = {node: Node(node.val)}
         while q:
-            for _ in range(len(q)):
-                node = q.popleft()
-                if node:
-                    mapper[node] = Node(node.val)
-                    for child in node.neighbors:
-                        if child and child not in mapper: q.append(child)
+            curr = q.popleft()
+            for child in curr.neighbors:
+                if child not in mapper:
+                    mapper[child] = Node(child.val)
+                    q.append(child)
+                mapper[curr].neighbors.append(mapper[child])
 
-        for orginal, copy in mapper.items():
-            for ch in orginal.neighbors:
-                copy.neighbors.append(mapper[ch])
-
-        return  mapper[root]     
+        return  mapper[node]     
