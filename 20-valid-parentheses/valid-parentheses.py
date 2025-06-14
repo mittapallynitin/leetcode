@@ -9,7 +9,7 @@ class Solution:
         tracker = []
 
         for ch in s:
-            if tracker and complement.get(tracker[-1], "") == ch:
+            if tracker and ch == complement.get(tracker[-1]):
                 tracker.pop()
             else:
                 tracker.append(ch)
