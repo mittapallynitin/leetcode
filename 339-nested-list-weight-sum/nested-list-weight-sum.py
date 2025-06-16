@@ -43,14 +43,18 @@
 
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        def helper(nl, level):
-            total = 0
-            for nest in nl:
-                if nest.isInteger():
-                    total += nest.getInteger() * level
-                else:
-                    total += helper(nest.getList(), level + 1)
-            return total
+        q = deque(nestedList)
+        depth = 1
+        total = 0 
 
-        return helper(nestedList, 1)
+        while q:
+            for _ in range(len(q)):
+                node = q.popleft()
+                if node.isInteger():
+                    total += node.getInteger() * depth
+                else:
+                    q.extend(node.getList())
+            depth += 1
+        return total
+
         
