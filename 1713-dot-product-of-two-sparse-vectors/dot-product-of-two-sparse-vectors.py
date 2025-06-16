@@ -1,11 +1,13 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
         self.vector = {i:v for i, v in enumerate(nums) if v != 0}
-        self.indicies = set(self.vector.keys())
+       
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        indicies = self.indicies.intersection(vec.indicies)
+        indicies = set(self.vector.keys()).intersection(
+            set(vec.vector.keys())
+        )
         total = 0
         for idx in indicies:
             total += self.vector[idx] * vec.vector[idx]
