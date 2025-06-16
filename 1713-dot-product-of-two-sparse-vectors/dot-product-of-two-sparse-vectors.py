@@ -5,12 +5,10 @@ class SparseVector:
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        indicies = set(self.vector.keys()).intersection(
-            set(vec.vector.keys())
-        )
         total = 0
-        for idx in indicies:
-            total += self.vector[idx] * vec.vector[idx]
+        for idx in self.vector.keys():
+            if idx in vec.vector.keys():
+                total += self.vector[idx] * vec.vector[idx]
         return total
         
 
