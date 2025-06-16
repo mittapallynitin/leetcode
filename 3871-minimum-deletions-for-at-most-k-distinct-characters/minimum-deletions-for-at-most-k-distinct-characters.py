@@ -1,7 +1,7 @@
 class Solution:
     def minDeletion(self, s: str, k: int) -> int:
         total = len(s)
-        chrs = sorted([(ch, cnt) for ch, cnt in Counter(s).items()], key=lambda x: x[1])
+        chrs = sorted(Counter(s).items(), key=lambda x: x[1])
         deletions = 0
         index = 0
         uniq = len(chrs)
