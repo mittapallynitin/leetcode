@@ -13,9 +13,7 @@ class MovingAverage:
         self.arr[self.pos] = val 
         self.pos = (self.pos + 1) % self.size
         self.ith_ele += 1
-        self.curr_sum += val
-        if self.ith_ele > self.size:
-            self.curr_sum -= sub
+        self.curr_sum += val - sub
         return float(self.curr_sum) / min(self.ith_ele, self.size)
                 
 
