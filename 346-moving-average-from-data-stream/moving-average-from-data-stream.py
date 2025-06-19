@@ -9,14 +9,15 @@ class MovingAverage:
         
 
     def next(self, val: int) -> float:
+        sub = self.arr[self.pos]
         self.arr[self.pos] = val 
         self.pos = (self.pos + 1) % self.size
         self.ith_ele += 1
-        return float(sum(self.arr)) / min(self.ith_ele, self.size)
-        
-
-
-        
+        self.curr_sum += val
+        if self.ith_ele > self.size:
+            self.curr_sum -= sub
+        return float(self.curr_sum) / min(self.ith_ele, self.size)
+                
 
 
 # Your MovingAverage object will be instantiated and called as such:
